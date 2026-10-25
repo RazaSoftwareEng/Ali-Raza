@@ -1,6 +1,25 @@
 import { certifications, education, experience, profile, skills } from '../data/content'
 import PageHeader from '../components/PageHeader'
+import { TechTag } from '../components/TechIcon'
+import { openCv } from '../lib/openCv'
 import { Icon } from '../components/Icons'
+
+const monthName = (ym) =>
+  new Date(`${ym}-01T00:00:00`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+
+const formatPeriod = (start, end) => `${monthName(start)} — ${end ? monthName(end) : 'Present'}`
+
+// LinkedIn-style duration, counting both the start and end month (e.g. "2 yrs 10 mos").
+function formatDuration(start, end) {
+  const [sy, sm] = start.split('-').map(Number)
+  const now = new Date()
+  const [ey, em] = end ? end.split('-').map(Number) : [now.getFullYear(), now.getMonth() + 1]
+  const months = (ey - sy) * 12 + (em - sm) + 1
+  const y = Math.floor(months / 12)
+  const m = months % 12
+  const part = (n, word) => (n ? `${n} ${word}${n > 1 ? 's' : ''}` : '')
+  return [part(y, 'yr'), part(m, 'mo')].filter(Boolean).join(' ')
+}
 
 function Timeline({ items, render }) {
   return (
@@ -24,9 +43,14 @@ export default function Resume() {
           <span className="flex items-center gap-2"><Icon name="phone" className="h-4 w-4" /> {profile.phone}</span>
           <span className="flex items-center gap-2"><Icon name="location" className="h-4 w-4" /> {profile.location}</span>
         </div>
-        <button type="button" onClick={() => window.print()} className="btn-primary mt-8 print:hidden">
-          <Icon name="download" className="h-4 w-4" /> Download / Print PDF
-        </button>
+        <div className="mt-8 flex flex-wrap gap-3 print:hidden">
+          <a href={profile.cv} onClick={(e) => openCv(e, profile.cv)} className="btn-primary">
+            <Icon name="download" className="h-4 w-4" /> Download CV
+          </a>
+          <button type="button" onClick={() => window.print()} className="btn-secondary">
+            Print this page
+          </button>
+        </div>
       </PageHeader>
 
       <section className="container-page grid gap-12 py-12 lg:grid-cols-[1.6fr_1fr]">
@@ -39,9 +63,19 @@ export default function Resume() {
                 <>
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="text-lg font-semibold text-fg">{job.role}</h3>
-                    <span className="font-mono text-xs text-accent">{job.period}</span>
+                    <span className="font-mono text-xs text-accent">
+                      {formatPeriod(job.start, job.end)} · {formatDuration(job.start, job.end)}
+                    </span>
                   </div>
-                  <p className="text-sm text-muted">{job.company}</p>
+                  <p className="text-sm font-medium text-body">
+                    {job.company}
+                    {job.type && ` · ${job.type}`}
+                  </p>
+                  {job.location && (
+                    <p className="flex items-center gap-1.5 text-xs text-faint">
+                      <Icon name="location" className="h-3.5 w-3.5" /> {job.location}
+                    </p>
+                  )}
                   <ul className="mt-3 space-y-2">
                     {job.points.map((pt) => (
                       <li key={pt} className="flex gap-2 text-sm leading-relaxed text-body">
@@ -50,6 +84,13 @@ export default function Resume() {
                       </li>
                     ))}
                   </ul>
+                  {job.skills?.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {job.skills.map((s) => (
+                        <TechTag key={s} name={s} />
+                      ))}
+                    </div>
+                  )}
                 </>
               )}
             />
@@ -65,8 +106,8 @@ export default function Resume() {
                     <h3 className="text-lg font-semibold text-fg">{ed.degree}</h3>
                     <span className="font-mono text-xs text-accent">{ed.period}</span>
                   </div>
-                  <p className="text-sm text-muted">{ed.school}</p>
-                  <p className="mt-2 text-sm text-body">{ed.detail}</p>
+                  {ed.school && <p className="text-sm text-muted">{ed.school}</p>}
+                  {ed.detail && <p className="mt-2 text-sm text-body">{ed.detail}</p>}
                 </>
               )}
             />
@@ -82,7 +123,7 @@ export default function Resume() {
                   <p className="mb-2 text-sm font-semibold text-body">{s.group}</p>
                   <div className="flex flex-wrap gap-2">
                     {s.items.map((i) => (
-                      <span key={i} className="tag">{i}</span>
+                      <TechTag key={i} name={i} />
                     ))}
                   </div>
                 </div>

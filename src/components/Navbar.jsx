@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle'
 
 const links = [
   { to: '/', label: 'Home' },
+  { to: '/services', label: 'Services' },
   { to: '/portfolio', label: 'Portfolio' },
   { to: '/resume', label: 'Resume' },
   { to: '/blogs', label: 'Blogs' },
@@ -49,7 +50,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === '/'} className={linkClass}>
               {l.label}
@@ -59,13 +60,13 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link to="/contact" className="btn-primary hidden lg:inline-flex">
+          <Link to="/contact" className="btn-primary hidden xl:inline-flex">
             Hire Me
           </Link>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="rounded-md p-2 text-body hover:bg-subtle md:hidden"
+            className="rounded-md p-2 text-body hover:bg-subtle lg:hidden"
             aria-label="Toggle menu"
             aria-expanded={open}
           >
@@ -75,7 +76,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="container-page flex animate-fade-up flex-col gap-1 pb-4 md:hidden">
+        <div className="container-page flex animate-fade-up flex-col gap-1 pb-4 lg:hidden">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === '/'} className={linkClass}>
               {l.label}

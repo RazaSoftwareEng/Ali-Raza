@@ -7,10 +7,12 @@ import ProjectCard from '../components/ProjectCard'
 import BlogCard from '../components/BlogCard'
 import SocialLinks from '../components/SocialLinks'
 import Typewriter from '../components/Typewriter'
+import ServiceCard from '../components/ServiceCard'
+import { TechTag } from '../components/TechIcon'
 
 export default function Home() {
   const featured = projects.filter((p) => p.featured)
-  const techList = skills.flatMap((s) => s.items).slice(0, 12)
+  const techList = skills.flatMap((s) => s.items)
 
   return (
     <>
@@ -98,17 +100,21 @@ export default function Home() {
 
       {/* Services */}
       <section className="container-page mt-24">
-        <SectionHeading eyebrow="What I do" title="Services I offer" description="End-to-end development, from idea to production." />
-        <div className="grid gap-6 md:grid-cols-3">
-          {services.map((s) => (
-            <div key={s.title} className="card">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-indigo-500/10 text-accent">
-                <Icon name={s.icon} className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 text-lg font-semibold text-fg">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{s.description}</p>
-            </div>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading eyebrow="What I do" title="Services I offer" description="End-to-end development, from idea to production." />
+          <Link to="/services" className="mb-10 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-soft">
+            All services <Icon name="arrowRight" className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.slice(0, 6).map((s) => (
+            <ServiceCard key={s.slug} service={s} />
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link to="/services" className="btn-secondary">
+            View More Services <Icon name="arrowRight" className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
@@ -117,9 +123,7 @@ export default function Home() {
         <SectionHeading eyebrow="Tech stack" title="Tools I work with" center />
         <div className="flex flex-wrap justify-center gap-3">
           {techList.map((t) => (
-            <span key={t} className="rounded-lg border border-line bg-surface px-4 py-2 font-mono text-sm text-body transition hover:border-indigo-500 hover:text-fg">
-              {t}
-            </span>
+            <TechTag key={t} name={t} size="lg" />
           ))}
         </div>
       </section>

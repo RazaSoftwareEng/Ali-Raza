@@ -14,7 +14,7 @@ export default function Portfolio() {
       <PageHeader
         eyebrow="Portfolio"
         title="Live projects I've built"
-        description="Websites and web apps built for real businesses — hotels, clinics, restaurants, retail and more. Click any project to open the live site in a new tab."
+        description="Real estate websites in Dubai and the UK, restaurant and hotel websites, clinic management systems, POS billing software and custom web apps — built for real businesses. Click any project to open the live site in a new tab."
       />
       <section className="container-page py-12">
         <div className="mb-10 flex flex-wrap gap-2">

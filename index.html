@@ -2,16 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ali Raza — Software Engineer. Portfolio, resume, blog and contact." />
+    <meta name="theme-color" content="#020617" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Page-specific SEO tags. The build replaces this block for every page (scripts/prerender.mjs),
+         and src/lib/seo.js keeps it updated in the browser while navigating. -->
+    <!--seo-start-->
+    <title>Ali Raza | Full Stack Developer & Software Engineer</title>
+    <meta name="description" content="Ali Raza is a full stack developer and software engineer in Lahore, Pakistan. Hire a freelance Next.js, React, Node.js and Python Django developer for your website or web app." />
+    <!--seo-end-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <title>Ali Raza | Software Engineer</title>
     <script>
-      // Apply the saved theme before first paint to avoid a flash (default: light).
-      try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark") } catch (e) {}
+      // Apply the theme before first paint to avoid a flash. Default: dark, unless the visitor chose light.
+      document.documentElement.classList.add("dark")
+      try { if (localStorage.getItem("theme") === "light") document.documentElement.classList.remove("dark") } catch (e) {}
     </script>
   </head>
   <body>

@@ -11,7 +11,10 @@ export default function Footer() {
             {profile.name}
             <span className="text-accent">.</span>
           </Link>
-          <p className="mt-1 text-sm text-faint">{profile.title} — building for the web.</p>
+          <p className="mt-1 max-w-md text-sm text-faint">
+            Full stack developer &amp; software engineer in Lahore, Pakistan — available for freelance projects in
+            Pakistan, the UAE, the UK and worldwide.
+          </p>
         </div>
         <SocialLinks />
       </div>

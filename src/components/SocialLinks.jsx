@@ -1,9 +1,10 @@
 import { profile } from '../data/content'
-import { FacebookIcon, GithubIcon, Icon, LinkedinIcon, TiktokIcon } from './Icons'
+import { FacebookIcon, GithubIcon, Icon, InstagramIcon, LinkedinIcon, TiktokIcon } from './Icons'
 
 const items = [
   { href: profile.socials.github, label: 'GitHub', icon: <GithubIcon /> },
   { href: profile.socials.linkedin, label: 'LinkedIn', icon: <LinkedinIcon /> },
+  { href: profile.socials.instagram, label: 'Instagram', icon: <InstagramIcon /> },
   { href: profile.socials.facebook, label: 'Facebook', icon: <FacebookIcon /> },
   { href: profile.socials.tiktok, label: 'TikTok', icon: <TiktokIcon /> },
   { href: `mailto:${profile.email}`, label: 'Email', icon: <Icon name="mail" /> },

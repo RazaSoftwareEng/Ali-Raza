@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Icon } from './Icons'
 
-// Light is the default; the choice is remembered (see the inline script in index.html).
+// Dark is the default; the visitor's choice is remembered (see the inline script in index.html).
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
+  // During build-time pre-rendering there is no document; dark is the default.
+  const [dark, setDark] = useState(() =>
+    typeof document === 'undefined' ? true : document.documentElement.classList.contains('dark'),
+  )
 
   const toggle = () => {
     const next = !dark

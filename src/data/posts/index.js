@@ -17,6 +17,7 @@ export const posts = [
       'Code splitting, memoization, virtualization, transitions and more — ten proven techniques that make React apps feel instant in production.',
     date: '2026-09-18',
     tags: ['React', 'Performance'],
+    keywords: ['how to speed up a React app', 'React performance optimization', 'React performance tips'],
     body: reactPerformance,
   },
   {
@@ -26,6 +27,7 @@ export const posts = [
       'Semantic tokens, reusable components, dark mode and team conventions — how to keep a growing Tailwind codebase visually consistent.',
     date: '2026-08-02',
     tags: ['CSS', 'Tailwind'],
+    keywords: ['Tailwind CSS design system', 'Tailwind CSS dark mode', 'Tailwind CSS best practices'],
     body: tailwindDesignSystem,
   },
   {
@@ -35,6 +37,7 @@ export const posts = [
       'Resource naming, versioning, status codes, error formats, validation, pagination and security — a complete checklist for APIs people love to use.',
     date: '2026-06-21',
     tags: ['Backend', 'Node.js'],
+    keywords: ['REST API best practices', 'REST API design', 'Node.js API best practices'],
     body: restApi,
   },
   {
@@ -44,6 +47,7 @@ export const posts = [
       'Deployable main, short-lived branches, small pull requests, clear commits and CI — a lightweight workflow that keeps small teams shipping.',
     date: '2026-05-10',
     tags: ['Git', 'Productivity'],
+    keywords: ['Git workflow for small teams', 'Git branching strategy', 'pull request best practices'],
     body: gitWorkflow,
   },
   {
@@ -53,6 +57,7 @@ export const posts = [
       'Images, containers, Dockerfiles, Compose and multi-stage builds explained simply — ship the same app on every machine.',
     date: '2026-04-02',
     tags: ['DevOps', 'Docker'],
+    keywords: ['Docker for beginners', 'Docker for web developers', 'Dockerfile for Node.js'],
     body: docker,
   },
   {
@@ -62,6 +67,7 @@ export const posts = [
       'Strict mode, typed props, discriminated unions, API types and generics — practical patterns that catch bugs before users do.',
     date: '2026-02-14',
     tags: ['TypeScript', 'React'],
+    keywords: ['TypeScript with React tips', 'TypeScript React best practices', 'React TypeScript props'],
     body: typescriptReact,
   },
 ]
