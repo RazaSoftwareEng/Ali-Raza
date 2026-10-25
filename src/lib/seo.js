@@ -2,7 +2,9 @@ import { posts, profile, services, skills } from '../data/content'
 
 // Change this one value if you move to a custom domain (also update vite.config.js).
 export const SITE_URL = 'https://ali-raza-software-eng.netlify.app'
-export const OG_IMAGE = `${SITE_URL}/og-image.png`
+// Share banner (1200x630 JPEG, kept under ~300 KB so WhatsApp shows it).
+export const OG_IMAGE = `${SITE_URL}/og-image.jpg`
+const PHOTO = `${SITE_URL}/ali-raza.jpg`
 const SITE_NAME = 'Ali Raza — Full Stack Developer'
 
 // Approved keywords, grouped by intent.
@@ -163,6 +165,8 @@ export function metaTags(seo) {
     ['property', 'og:description', seo.description],
     ['property', 'og:url', url],
     ['property', 'og:image', OG_IMAGE],
+    ['property', 'og:image:secure_url', OG_IMAGE],
+    ['property', 'og:image:type', 'image/jpeg'],
     ['property', 'og:image:width', '1200'],
     ['property', 'og:image:height', '630'],
     ['property', 'og:image:alt', 'Ali Raza — Full Stack Developer & Software Engineer'],
@@ -187,7 +191,7 @@ export function structuredData(seo) {
     jobTitle: 'Full Stack Developer & Software Engineer',
     description: profile.summary,
     url: `${SITE_URL}/`,
-    image: OG_IMAGE,
+    image: PHOTO,
     email: `mailto:${profile.email}`,
     telephone: `+${profile.whatsapp}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Lahore', addressCountry: 'PK' },
